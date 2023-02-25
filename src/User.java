@@ -4,21 +4,22 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.ListIterator;
 import java.util.Scanner;
-
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 public class User {
 
     String fullName;
     String uname;
     String password;
-    int totalpoints;
-    ArrayList<Books> boughtBooks = new ArrayList<Books>();
+    int fine;
+    ArrayList<Books> issuedBooks = new ArrayList<Books>();
 
     public User(String fullName, String uname, String password) {
         this.fullName = fullName;
         this.uname = uname;
         this.password = password;
-        this.totalpoints = 500;
+        this.fine = 0;
     }
 
     public String getUsername() {
@@ -33,13 +34,15 @@ public class User {
         return this.password;
     }
 
-    public int getTotalpoints() {
-        return this.totalpoints;
+    public int getFine() {
+        return this.fine;
     }
 
     public void setPassword(String pwd) {
         this.password = pwd;
     }
+     public void setFine(long lateFees) {
+        this.fine += lateFees;    }
 
     public int ShowUserProfile() {
         Scanner scan=new Scanner(System.in);
@@ -48,12 +51,13 @@ public class User {
         System.out.println("Full Name : " + getFullName());
         System.out.println("User Name : " + getUsername());
         System.out.println("Password : " + getPassword());
-        System.out.println("Balance Points:" + getTotalpoints());
+        System.out.println("Total Fine:" + getFine());
         System.out.println();
         System.out.println("Books Bought : ");
-        ListIterator<Books> iterate = boughtBooks.listIterator();
+        ListIterator<Books> iterate = issuedBooks.listIterator();
         while (iterate.hasNext()) {
-            System.out.println("->" + (iterate.next()).bname);
+           System.out.println("->" + (iterate.next()).bname);
+           // System.out.println((iterate.next()).issue_date + "  ");
         }
 
         System.out.println("-----------------------------------------------------------------------------------");
@@ -69,36 +73,81 @@ public class User {
     }
 
     public void ShowProfile() {
-        System.out.println(getFullName() + "         " + getUsername() + "         " + getPassword() + "           " + getTotalpoints());
+        System.out.println(getFullName() + "         " + getUsername() + "         " + getPassword() + "           " + getFine());
         System.out.print("Books Bought : ");
-        ListIterator<Books> iterate = boughtBooks.listIterator();
+        ListIterator<Books> iterate = issuedBooks.listIterator();
         while (iterate.hasNext()) {
-            System.out.print((iterate.next()).bname + "  ");
+            System.out.print((iterate.next()).bname + "  ");           
         }
         System.out.println();
         System.out.print("-----------------------------------------------------------------------------------");
     }
 
-    public boolean PurchaseBook(Books buybook) {
+    public boolean issueBook(Books buybook) {
         if (buybook.getCopies() <= 0) {
             System.out.println("Sorry!! Book you want purchase is out of stock!!");
             return false;
         }
-        buybook.copies -= 1;
-        if (buybook.bpoints <= this.totalpoints) {
-            this.totalpoints -= buybook.bpoints;
-            this.boughtBooks.add(buybook);
+        buybook.copies -= 1; 
+           // LocalDate issue_date = LocalDate.now();                  
+           // buybook.issue_date=issue_date;
+           buybook.issue_date = LocalDate.now();
+            this.issuedBooks.add(buybook);
             System.out.println("Transaction successful!");
             System.out.println("-----------------------------------------------------------------------------------");
-            System.out.println(buybook.bname + " book has been added to your purchased books list.");
-            System.out.println("Remaining points: " + this.totalpoints);
+            System.out.println(buybook.bname +" book has been added to your purchased books list.");
+          //  System.out.println("Remaining points: " + this.totalpoints);
             System.out.println("-----------------------------------------------------------------------------------");
             return true;
-        } else {
-            System.out.println("Insufficient balance. Please purchase more points to make a transaction.");
-            this.ShowProfile();
-            return false;
+       
+    }
+
+    public void returnBook(Books buybook,ArrayList<Books> totalBooks) {
+        ListIterator<Books> iterate = totalBooks.listIterator();
+        while (iterate.hasNext()) {
+            Books book=iterate.next();
+           if(book.bid==buybook.bid) {
+                iterate.next().copies++;
+                buybook.return_date=LocalDate.now();               
+                 long daysBetween = ChronoUnit.DAYS.between(buybook.issue_date,LocalDate.now().plusDays(25));
+                 System.out.println("daysBetween"+daysBetween);
+                 if(daysBetween>15){
+                    long fine_rs=(daysBetween-15)*5;                   
+                    System.out.println(fine_rs+"buybook");
+                    setFine(fine_rs);
+                 }
+                this.issuedBooks.remove(buybook);
+                System.out.println("Transaction successful!");
+                System.out.println("-----------------------------------------------------------------------------------");
+                System.out.println(buybook.bname +" book has been returned");
+                return;
+           }
         }
+    }
+
+    public Books getReturnBook(){
+        ListIterator<Books> iterate = issuedBooks.listIterator();
+        System.out.println("----------------------------------- Issued Books ----------------------------------");
+            System.out.println("Book ID       Book Name     Issue_date    Return_date");
+        while(iterate.hasNext()){
+            Books book=iterate.next();
+            System.out.println(book.bid + "    " + book.bname + "     " + book.issue_date + " " + book.return_date);
+        }
+
+        System.out.println("Enter Book ID you want to return : ");
+        Scanner sc = new Scanner(System.in);
+        int id=sc.nextInt();
+
+        iterate = issuedBooks.listIterator();
+
+        while(iterate.hasNext()){
+            Books book=iterate.next();
+            if(book.bid==id){
+                return book;
+            }
+        }
+        System.out.println("Book not exist");
+        return null;
     }
 
     // Perform the operations untill the user is logged in
@@ -112,8 +161,9 @@ public class User {
 
             System.out.println("-----------------------------------------------------------------------------------");
             System.out.println("1-->Profile");
-            System.out.println("2-->Purchase");
-            System.out.println("3-->Logout");
+            System.out.println("2-->Issue Book");
+            System.out.println("3-->Return Book");
+            System.out.println("4-->Logout");
             System.out.println("-----------------------------------------------------------------------------------");
             System.out.println("Enter your choice : ");
             try {
@@ -144,15 +194,22 @@ public class User {
                         int bookId = scan.nextInt();
 
                         // Find the book and purchase the book
-                        Books foundbook = Books.findBook(bookId, totalBooks);
+                        Books foundbook = Books.findBook(bookId, totalBooks);                      
                         if (foundbook == null) {
                             System.out.println("please enter valid book id...");
                         } else {
-                            currUser.PurchaseBook(foundbook);
+                            currUser.issueBook(foundbook);
+                        }
+                        break;
+                        //return book
+                    case 3:
+                        Books rbook=currUser.getReturnBook();
+                        if(rbook!=null){
+                            currUser.returnBook(rbook,totalBooks);
                         }
                         break;
                     //Log out
-                    case 3:
+                    case 4:
                         currUser = null;
                         new ProcessBuilder("cmd", "/c", "cls");
                         System.out.println("Successfully Logged Out!!");
