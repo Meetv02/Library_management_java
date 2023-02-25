@@ -85,8 +85,9 @@ public class Login {
             while (admin != null) {
                 System.out.println("------------------------------------ Admin Panel ----------------------------------");
                 System.out.println("1--->Registered Users");
-                System.out.println("2--->Available Books in the store");
-                System.out.println("3--->LogOut");
+                System.out.println("2--->Available Books ");
+                System.out.println("3--->Add New Book");
+                System.out.println("4--->LogOut");
                 System.out.println("-----------------------------------------------------------------------------------");
 
                 System.out.println("Enter your choice : ");
@@ -100,6 +101,9 @@ public class Login {
                         admin.BooksInStore(totalBooks);
                         break;
                     case 3:
+                        Books.insertBooks(totalBooks);
+                        break;
+                    case 4:
                         //Unsetting/destroying the sessions
                         admin = null;
                         //new ProcessBuilder("cmd", "/c", "cls");
