@@ -15,7 +15,7 @@ public class User extends Student{
     public boolean issueBook(Books buybook) {
         //check if the book is available or not
         if (buybook.getCopies() <= 0) {
-            System.out.println("Sorry!! Book you want purchase is out of stock!!");
+            System.out.println("Sorry!! Book you want issue is out of stock!!");
             return false;
         }
         buybook.setCopies(buybook.getCopies()-1);
@@ -26,7 +26,7 @@ public class User extends Student{
         this.issuedBooks.add(buybook);
         System.out.println("Transaction successful!");
         System.out.println("-----------------------------------------------------------------------------------");
-        System.out.println(buybook.getBookName() +" book has been added to your purchased books list.");        
+        System.out.println(buybook.getBookName() +" book has been added to your issued books list.");        
         System.out.println("-----------------------------------------------------------------------------------");
         return true;
 

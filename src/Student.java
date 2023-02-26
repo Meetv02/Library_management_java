@@ -38,7 +38,7 @@ public class Student {
     public void setFine(long lateFees) {
         this.fine += lateFees;
     }
-    // display the user name,full name,fine of the user and also display the purchased book by the users
+    // display the user name,full name,fine of the user and also display the issued book by the users
     public int ShowUserProfile() {
         Scanner scan = new Scanner(System.in);
         System.out.println("");
@@ -69,7 +69,7 @@ public class Student {
         return profilechoice;
 
     }
-    //show the user profile information and display the purchase  book information 
+    //show the user profile information and display the issue  book information 
     public void ShowProfile() {        
         System.out.printf("%-30s %-30s %-30d%n",getFullName(),getUsername(),getFine());        
         System.out.println("------------------------------------- Books Bought --------------------------------");      
@@ -149,14 +149,14 @@ public class Student {
                         }
 
                         break;
-                    // Purchase books
+                    // isuue books
                     case 2:
                         System.out.println(
-                                "Enter the book id which you want to purchase"
+                                "Enter the book id which you want to issue"
                         );
                         int bookId = scan.nextInt();
 
-                        // Find the book and purchase the book
+                        // Find the book and isuue the book
                         Books foundbook = Books.findBook(bookId, totalBooks);
                         if (foundbook == null) {
                             System.out.println("please enter valid book id...");

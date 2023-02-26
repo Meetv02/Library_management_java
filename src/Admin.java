@@ -53,24 +53,24 @@ public class Admin implements manageBook {
         System.out.print("Enter Book Name: ");
         name = sc.nextLine();
         while(name.length() < 1){
-            System.out.println("| Error: Please Enter the Book Name    |");
-            System.out.println("*-*-*-*-*-*-*-*-*-*-*-*-*");
+            System.out.println("Error: Please Enter the Book Name");
+            System.out.println("----------------------------------------");
             System.out.print("Enter Book Name: ");
             name = sc.nextLine();
         }
         System.out.print("Enter Book Price: ");
         price=sc.nextInt();
         while(price<1){
-            System.out.println("| Error: Please Enter the Book Price more than 1    |");
-            System.out.println("*-*-*-*-*-*-*-*-*-*-*-*-*");
+            System.out.println("Error: Please Enter the Book Price more than 1");
+            System.out.println("-----------------------------------------------------");
             System.out.print("| Enter Book Price: ");
             price = sc.nextInt();
         }
         System.out.print("Enter Quantity of Book : ");
         qty=sc.nextInt();
         while(qty<1){
-            System.out.println("| Error: Please Enter Quantity of Book more than 1 |");
-            System.out.println("*-*-*-*-*-*-*-*-*-*-*-*-*");
+            System.out.println("Error: Please Enter Quantity of Book more than 1");
+            System.out.println("----------------------------------------------------");
             System.out.print("Enter Quantity of Book : ");
             qty = sc.nextInt();
         }
