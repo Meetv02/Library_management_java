@@ -31,19 +31,14 @@ public class User extends Student{
 
     }
 
-    public void returnBook(Books buybook,ArrayList<Books> totalBooks) {
-        System.out.println("function called");
+    public void returnBook(Books buybook,ArrayList<Books> totalBooks) {        
         ListIterator<Books> iterate = totalBooks.listIterator();
-        while (iterate.hasNext()) {
-            System.out.println("in the loop");
+        while (iterate.hasNext()) {           
             Books book=iterate.next();
-            if(book.getBookId()==buybook.getBookId()) {
-                System.out.println("in condition");
+            if(book.getBookId()==buybook.getBookId()) {               
                 Admin admin=new Admin();
-                book.setCopies(book.getCopies()+1);
-                System.out.println("copies updated");
-                setFine(admin.countFine(buybook));
-                System.out.println("fine returned");
+                book.setCopies(book.getCopies()+1);               
+                setFine(admin.countFine(buybook));                
                 buybook.setStatus(true);
                 System.out.println("Transaction successful!");
                 System.out.println("-----------------------------------------------------------------------------------");

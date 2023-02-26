@@ -48,6 +48,7 @@ public class Student {
         System.out.println();
         System.out.println("Books Bought : ");
         ListIterator<Books> iterate = issuedBooks.listIterator();
+        System.out.printf("%-10s %-30s %-10s %-10s %-20s %-20s %-10s%n","Book ID","Book Name","Price","Copies","Issue Date","Return Date","Return Status");
         while (iterate.hasNext()) {
             (iterate.next()).displayIssuedBook();
         }
@@ -65,12 +66,19 @@ public class Student {
     }
 
     public void ShowProfile() {
-        System.out.println(getFullName() + "         " + getUsername() + "         " + getPassword() + "           " + getFine());
-        System.out.print("Books Bought : ");
+        
+        System.out.printf("%-30s %-30s %-30d%n",getFullName(),getUsername(),getFine());        
+        System.out.println("------------------------------------- Books Bought --------------------------------");      
+        System.out.printf("%-10s %-30s %-20s %-20s %-10s%n","Book ID","Book Name","Issue Date","Return Date","Return Status");
+        
         ListIterator<Books> iterate = issuedBooks.listIterator();
         while (iterate.hasNext()) {
-            System.out.print((iterate.next()).getBookName() + "  ");
-        }
+            Books book=iterate.next();
+            String returns;
+            if (book.getStatus()== false) returns = "Not Returned";
+            else returns = "Returned";
+            System.out.printf("%-10d %-30s %-20s %-20s %-10s%n",book.getBookId(),book.getBookName(),book.getIssue_date(),book.getReturn_date(),returns);
+           }
         System.out.println();
         System.out.print("-----------------------------------------------------------------------------------");
     }
@@ -78,11 +86,14 @@ public class Student {
     public Books getReturnBook() {
         ListIterator<Books> iterate = issuedBooks.listIterator();
         System.out.println("----------------------------------- Issued Books ----------------------------------");
-        System.out.println("Book ID       Book Name     Issue_date    Return_date");
+        //System.out.println("Book ID       Book Name     Issue_date    Return_date");
+        System.out.printf("%-10s %-30s %-20s %-20s%n","Book ID","Book Name","Issue Date","Return Date");
+
         while (iterate.hasNext()) {
             Books book = iterate.next();
             if(book.getStatus()==false){
-                System.out.println(book.getBookId() + "    " + book.getBookName() + "     " + book.getIssue_date() + " " + book.getReturn_date());
+                //System.out.println(book.getBookId() + "    " + book.getBookName() + "     " + book.getIssue_date() + " " + book.getReturn_date());
+                 System.out.printf("%-10d %-30s %-20s %-20s%n",book.getBookId(),book.getBookName(),book.getIssue_date(),book.getReturn_date());
             }
         }
 
@@ -109,8 +120,8 @@ public class Student {
         while (currUser != null) {
             Scanner scan = new Scanner(System.in);
             // Display the available books in the store
-            System.out.println("----------------------------------- Book Catalog ----------------------------------");
-            System.out.println("Book ID       Book Name          Book Points    Available Copies   Availability");
+            System.out.println("----------------------------------- Book Catalog ----------------------------------");            
+             System.out.printf("%-10s %-30s %-10s %-10s %-20s%n","Book ID","Book Name","Price","Copies","Availability");
             Books.AllBooksDisplay(totalBooks);
 
             System.out.println("-----------------------------------------------------------------------------------");

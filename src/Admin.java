@@ -21,8 +21,8 @@ public class Admin implements manageBook {
     }
 
     public void DisplayRegUsers(ArrayList<User> UsersList) {
-        System.out.println("------------------------------------- User Profile --------------------------------");
-        System.out.println("Full Name         User Name        Password         Balance Points ");
+        System.out.println("------------------------------------- User Profile --------------------------------");      
+        System.out.printf("%-30s %-30s %-30s%n","Full Name","User Name","Fine");
         System.out.println("-----------------------------------------------------------------------------------");
         for (User u : UsersList) {
             u.ShowProfile();
@@ -34,7 +34,7 @@ public class Admin implements manageBook {
     public void BooksInStore(ArrayList<Books> totalBooks) {
         System.out.println("---------------------------------- Book Catalog -----------------------------------");
        // System.out.println("Book ID     Book Name       Book Points    Available Copies   Availability");
-         System.out.printf("%-10s %-30s %-10s %-10s %-20s%n","Book ID","Book Name"," Book Points","Available Copies","Availability");
+         System.out.printf("%-10s %-30s %-10s %-10s %-20s%n","Book ID","Book Name","Price","Copies","Availability");
         System.out.println("-----------------------------------------------------------------------------------");
         for (Books b : totalBooks) {
             b.displayBook();
@@ -50,12 +50,12 @@ public class Admin implements manageBook {
         int bid=1,price,qty;
         String name;
         bid++;
-        System.out.print("| Enter Book Name: ");
+        System.out.print("Enter Book Name: ");
         name = sc.nextLine();
         while(name.length() < 1){
             System.out.println("| Error: Please Enter the Book Name    |");
             System.out.println("*-*-*-*-*-*-*-*-*-*-*-*-*");
-            System.out.print("| Enter Book Name: ");
+            System.out.print("Enter Book Name: ");
             name = sc.nextLine();
         }
         System.out.print("Enter Book Price: ");
@@ -79,11 +79,9 @@ public class Admin implements manageBook {
     }
 
     @Override
-    public int countFine(Books buybook) {
-        System.out.println("in count function");
+    public int countFine(Books buybook) {        
         int fine_rs=0;
-        long daysBetween = ChronoUnit.DAYS.between(buybook.getReturn_date(), LocalDate.now());
-        System.out.println("fine counted");
+        long daysBetween = ChronoUnit.DAYS.between(buybook.getReturn_date(), LocalDate.now());        
         if(daysBetween>0){
             fine_rs= (int) ((daysBetween)*5);
         }
