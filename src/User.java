@@ -40,7 +40,7 @@ public class User extends Student{
             if(book.getBookId()==buybook.getBookId()) {
                 System.out.println("in condition");
                 Admin admin=new Admin();
-                (iterate.next()).setCopies(iterate.next().getCopies()+1);
+                book.setCopies(book.getCopies()+1);
                 System.out.println("copies updated");
                 setFine(admin.countFine(buybook));
                 System.out.println("fine returned");

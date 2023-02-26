@@ -81,7 +81,9 @@ public class Student {
         System.out.println("Book ID       Book Name     Issue_date    Return_date");
         while (iterate.hasNext()) {
             Books book = iterate.next();
-            System.out.println(book.getBookId() + "    " + book.getBookName() + "     " + book.getIssue_date() + " " + book.getReturn_date());
+            if(book.getStatus()==false){
+                System.out.println(book.getBookId() + "    " + book.getBookName() + "     " + book.getIssue_date() + " " + book.getReturn_date());
+            }
         }
 
         System.out.println("Enter Book ID you want to return : ");

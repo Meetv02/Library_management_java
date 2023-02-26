@@ -92,14 +92,7 @@ public class Books {
         else returns = "Returned";
         System.out.println(bid + "         " + bname + "            " + bpoints + "              " + copies + "          " + issue_date + "         " + return_date + "         " + returns);
     }
-
-    public void displayIssuedBook() {
-        String returns;
-        if (status == false) returns = "Not Returned";
-        else returns = "Returned";
-        System.out.println(bid + "         " + bname + "            " + bpoints + "              " + copies + "          " + issue_date + "         " + return_date + "         " + returns);
-    }
-
+   
     // Display all books present in the bookstore(i.e ArrayList)
     public static void AllBooksDisplay(ArrayList<Books> totalBooks) {
         ListIterator<Books> iterate = totalBooks.listIterator();
