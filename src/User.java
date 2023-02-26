@@ -19,7 +19,7 @@ public class User extends Student{
         }
         buybook.setCopies(buybook.getCopies()-1);
         buybook.setIssue_date(LocalDate.now());
-        buybook.setIssue_date(LocalDate.now().plusDays(15));
+        buybook.setReturn_date(LocalDate.now().plusDays(15));
         buybook.setStatus(false);
         this.issuedBooks.add(buybook);
         System.out.println("Transaction successful!");
@@ -32,13 +32,18 @@ public class User extends Student{
     }
 
     public void returnBook(Books buybook,ArrayList<Books> totalBooks) {
+        System.out.println("function called");
         ListIterator<Books> iterate = totalBooks.listIterator();
         while (iterate.hasNext()) {
+            System.out.println("in the loop");
             Books book=iterate.next();
             if(book.getBookId()==buybook.getBookId()) {
+                System.out.println("in condition");
                 Admin admin=new Admin();
                 (iterate.next()).setCopies(iterate.next().getCopies()+1);
+                System.out.println("copies updated");
                 setFine(admin.countFine(buybook));
+                System.out.println("fine returned");
                 buybook.setStatus(true);
                 System.out.println("Transaction successful!");
                 System.out.println("-----------------------------------------------------------------------------------");

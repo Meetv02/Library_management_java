@@ -1,9 +1,12 @@
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.Console;
-import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 public class Admin implements manageBook {
     String aname;
@@ -76,8 +79,10 @@ public class Admin implements manageBook {
 
     @Override
     public int countFine(Books buybook) {
+        System.out.println("in count function");
         int fine_rs=0;
         long daysBetween = ChronoUnit.DAYS.between(buybook.getReturn_date(), LocalDate.now());
+        System.out.println("fine counted");
         if(daysBetween>0){
             fine_rs= (int) ((daysBetween)*5);
         }
