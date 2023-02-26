@@ -90,7 +90,9 @@ public class Books {
         String returns;
         if (status == false) returns = "Not Returned";
         else returns = "Returned";
-        System.out.println(bid + "         " + bname + "            " + bpoints + "              " + copies + "          " + issue_date + "         " + return_date + "         " + returns);
+      //  System.out.println(bid + "         " + bname + "            " + bpoints + "              " + copies + "          " + issue_date + "         " + return_date + "         " + returns);
+         System.out.printf("%-10d %-30s %-10d %-10d %-20 %-10s %-10s %-10s%n",bid,bname,bpoints,copies,issue_date,return_date,returns);
+
     }
    
     // Display all books present in the bookstore(i.e ArrayList)
