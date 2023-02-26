@@ -44,6 +44,7 @@ public class Login {
         }
         return false;
     }
+    //user login  using username and password
     public static User userLogin(
             ArrayList<User> registeredUsers
     ) {
@@ -67,6 +68,4 @@ public class Login {
         }
         return null;
     }
-
-
 }

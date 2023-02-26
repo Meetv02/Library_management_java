@@ -58,7 +58,7 @@ public class Books {
         this.bpoints = bpoints;
         this.copies = copies;
     }
-
+    //initialize the bydefault book
     public static void initBooks(ArrayList<Books> totalBooks) {       
         totalBooks.add(new Books(1, "War and Peace", 200, 3));
         totalBooks.add(new Books(2, "Moby Quick", 150, 5));
@@ -78,20 +78,19 @@ public class Books {
         }
         return null;
     }
+    //check if the book is in stock or not and display  it
     public void displayBook() {
         String avail;
         if (copies == 0) avail = "Out of Stock";
-        else avail = "In Stock";
-        //System.out.println(bid + "         " + bname + "            " + bpoints + "              " + copies + "          " + avail);
-         System.out.printf("%-10d %-30s %-10d %-10d %-20s%n",bid,bname,bpoints,copies,avail);
+        else avail = "In Stock";       
+        System.out.printf("%-10d %-30s %-10d %-10d %-20s%n",bid,bname,bpoints,copies,avail);
     }
-
+    //check if the user is returned the book or not
     public void displayIssuedBook() {
         String returns;
         if (status == false) returns = "Not Returned";
-        else returns = "Returned";
-      //  System.out.println(bid + "         " + bname + "            " + bpoints + "              " + copies + "          " + issue_date + "         " + return_date + "         " + returns);
-         System.out.printf("%-10d %-30s %-10d %-10d %-20s %-20s %-10s%n",bid,bname,bpoints,copies,issue_date,return_date,returns);
+        else returns = "Returned";      
+        System.out.printf("%-10d %-30s %-10d %-10d %-20s %-20s %-10s%n",bid,bname,bpoints,copies,issue_date,return_date,returns);
 
     }
    

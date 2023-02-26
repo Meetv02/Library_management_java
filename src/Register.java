@@ -52,6 +52,7 @@ public class Register {
         }
         return false;
     }
+    // create a new user  and add it to the list of user list
     public static void userRegister(ArrayList<User> registeredUsers){
         Console cnl=System.console();
         Scanner sc = new Scanner(System.in);

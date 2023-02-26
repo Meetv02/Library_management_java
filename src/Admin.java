@@ -19,7 +19,7 @@ public class Admin implements manageBook {
         this.aname = aname;
         this.apassword = apassword;
     }
-
+        //display the admin information 
     public void DisplayRegUsers(ArrayList<User> UsersList) {
         System.out.println("------------------------------------- User Profile --------------------------------");      
         System.out.printf("%-30s %-30s %-30s%n","Full Name","User Name","Fine");
@@ -31,6 +31,7 @@ public class Admin implements manageBook {
         System.out.println("-----------------------------------------------------------------------------------");
     }
 
+    // displays the all the users book information
     public void BooksInStore(ArrayList<Books> totalBooks) {
         System.out.println("---------------------------------- Book Catalog -----------------------------------");
        // System.out.println("Book ID     Book Name       Book Points    Available Copies   Availability");
@@ -43,7 +44,6 @@ public class Admin implements manageBook {
     }
 
     // Function Insert data of books
-
     @Override
     public void insertBook(ArrayList<Books> totalBooks) {
         Scanner sc = new Scanner(System.in);
@@ -77,7 +77,7 @@ public class Admin implements manageBook {
         totalBooks.add(new Books(bid, name, price, qty));
         System.out.println("record book inserted : ");
     }
-
+    //count the book fine
     @Override
     public int countFine(Books buybook) {        
         int fine_rs=0;
@@ -87,7 +87,7 @@ public class Admin implements manageBook {
         }
         return fine_rs;
     }
-
+    // diplay the password in the * sign
     private static String readPassword() {
         Console console;
         if ((console = System.console()) != null) {
@@ -100,6 +100,7 @@ public class Admin implements manageBook {
         }
         return null;
     }
+    //admin login and display the admin list information
     public static void adminLogin(
             ArrayList<User> registeredUsers,
             ArrayList<Books> totalBooks
@@ -128,12 +129,15 @@ public class Admin implements manageBook {
 
                 switch (ch) {
                     case 1:
+                    //display the register user information
                         admin.DisplayRegUsers(registeredUsers);
                         break;
                     case 2:
+                    //display the total book are available in the book list
                         admin.BooksInStore(totalBooks);
                         break;
                     case 3:
+                    //insert the new book into the book list
                         admin.insertBook(totalBooks);
                         break;
                     case 4:
@@ -151,6 +155,4 @@ public class Admin implements manageBook {
             System.out.println("Admin Login Failed");
         }
     }
-
-
 }

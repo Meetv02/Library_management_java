@@ -6,7 +6,7 @@ public class Student {
     private String fullName, uname, password;
     private int fine;
     ArrayList<Books> issuedBooks = new ArrayList<Books>();
-
+    //create a new Student constructor
     public Student(String fullName, String uname, String password) {
         this.fullName = fullName;
         this.uname = uname;
@@ -14,42 +14,47 @@ public class Student {
         this.fine = 0;
     }
 
+    //get the usernames from the issuedBooks list
     public String getUsername() {
         return this.uname;
     }
-
+    // get the full name from the issuedBooks list
     public String getFullName() {
         return this.fullName;
     }
-
+    // get the password from the issuedBooks list
     public String getPassword() {
         return this.password;
     }
-
+    // get the fine from the issuedBooks list
     public int getFine() {
         return this.fine;
     }
-
+    //set the new password of the forgotten user
     public void setPassword(String pwd) {
         this.password = pwd;
     }
-
+    // set the fine of the late return book
     public void setFine(long lateFees) {
         this.fine += lateFees;
     }
-
+    // display the user name,full name,fine of the user and also display the purchased book by the users
     public int ShowUserProfile() {
         Scanner scan = new Scanner(System.in);
         System.out.println("");
         System.out.println("---------------------------------- User Profile -------------------------------------");
+        // get the fullname from the user user list
         System.out.println("Full Name : " + getFullName());
+        // get the username from the user user list
         System.out.println("User Name : " + getUsername());
+        // get the fine from the user user list
         System.out.println("Total Fine:" + getFine());
         System.out.println();
         System.out.println("Books Bought : ");
         ListIterator<Books> iterate = issuedBooks.listIterator();
         System.out.printf("%-10s %-30s %-10s %-10s %-20s %-20s %-10s%n","Book ID","Book Name","Price","Copies","Issue Date","Return Date","Return Status");
         while (iterate.hasNext()) {
+            //display the book details of the book list
             (iterate.next()).displayIssuedBook();
         }
 
@@ -64,9 +69,8 @@ public class Student {
         return profilechoice;
 
     }
-
-    public void ShowProfile() {
-        
+    //show the user profile information and display the purchase  book information 
+    public void ShowProfile() {        
         System.out.printf("%-30s %-30s %-30d%n",getFullName(),getUsername(),getFine());        
         System.out.println("------------------------------------- Books Bought --------------------------------");      
         System.out.printf("%-10s %-30s %-20s %-20s %-10s%n","Book ID","Book Name","Issue Date","Return Date","Return Status");
@@ -82,17 +86,15 @@ public class Student {
         System.out.println();
         System.out.print("-----------------------------------------------------------------------------------");
     }
-
+    //display the return book using the book id 
     public Books getReturnBook() {
         ListIterator<Books> iterate = issuedBooks.listIterator();
-        System.out.println("----------------------------------- Issued Books ----------------------------------");
-        //System.out.println("Book ID       Book Name     Issue_date    Return_date");
+        System.out.println("----------------------------------- Issued Books ----------------------------------");        
         System.out.printf("%-10s %-30s %-20s %-20s%n","Book ID","Book Name","Issue Date","Return Date");
 
         while (iterate.hasNext()) {
             Books book = iterate.next();
-            if(book.getStatus()==false){
-                //System.out.println(book.getBookId() + "    " + book.getBookName() + "     " + book.getIssue_date() + " " + book.getReturn_date());
+            if(book.getStatus()==false){                
                  System.out.printf("%-10d %-30s %-20s %-20s%n",book.getBookId(),book.getBookName(),book.getIssue_date(),book.getReturn_date());
             }
         }
@@ -100,18 +102,14 @@ public class Student {
         System.out.println("Enter Book ID you want to return : ");
         Scanner sc = new Scanner(System.in);
         int id = sc.nextInt();
-
         iterate = issuedBooks.listIterator();
-
         while (iterate.hasNext()) {
             Books book = iterate.next();
             if (book.getBookId() == id) {
                 return book;
             }
         }
-
         System.out.println("Book not exist");
-
         return null;
     }
 
@@ -166,7 +164,7 @@ public class Student {
                             currUser.issueBook(foundbook);
                         }
                         break;
-                    //return book
+                      //return book
                     case 3:
                         Books rbook = currUser.getReturnBook();
                         if (rbook != null) {
