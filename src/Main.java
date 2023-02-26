@@ -21,8 +21,7 @@ public class Main {
 
         // initial few books insert
          Books.initBooks(totalBooks);
-          //Date dNow = new Date( );
-     //   System.out.println(dNow);    
+
         System.out.println("----------------------------- Welcome to the book store ---------------------------");
 
         // Main execution flow goes here untill user press 3(i.e. exiting)
@@ -76,7 +75,7 @@ public class Main {
                         break;
                     // Admin Loign
                     case 2:
-                        Login.adminLogin(registeredUsers,totalBooks);
+                        Admin.adminLogin(registeredUsers,totalBooks);
                         break;
                     // Register
                     case 3:

@@ -5,14 +5,10 @@ import java.time.LocalDate;
 
 public class Books {
 
-    String bname;
-    int bpoints;
-    int copies;
-    int bid;
-    LocalDate issue_date;
-    LocalDate return_date;
-    
-
+    private String bname;
+    private int bpoints,copies,bid;
+    private boolean status;
+    private LocalDate issue_date,return_date;
 
     public String getBookName() {
         return this.bname;
@@ -29,63 +25,46 @@ public class Books {
     public int getBookId() {
         return this.bid;
     }
-   
+
+    public LocalDate getIssue_date(){
+        return this.issue_date;
+    }
+
+    public LocalDate getReturn_date(){
+        return this.return_date;
+    }
+
+    public boolean getStatus(){
+        return this.status;
+    }
+    public void setCopies(int copies) {
+        this.copies=copies;
+    }
+
+    public void setIssue_date(LocalDate issue_date){
+        this.issue_date=issue_date;
+    }
+
+    public void setReturn_date(LocalDate return_date){
+        this.return_date=return_date;
+    }
+
+    public void setStatus(boolean status){
+        this.status=status;
+    }
     public Books(int bid, String bname, int bpoints, int copies) {
-        LocalDate issue_date = LocalDate.now();
-        // LocalDate return_date= new Date(issue_date.getTime() + 15 * 24 * 60 * 60 * 1000); 
-        //System.out.println("Current Date: "+issue_date);
-        //System.out.println("Return Date: "+return_date);
         this.bid = bid;
         this.bname = bname;
         this.bpoints = bpoints;
         this.copies = copies;
-        //this.issue_date = issue_date;      
     }
-    
-
 
     public static void initBooks(ArrayList<Books> totalBooks) {       
         totalBooks.add(new Books(1, "War and Peace", 200, 3));
-        totalBooks.add(new Books(2, "  Moby Quick ", 150, 5));
+        totalBooks.add(new Books(2, "Moby Quick", 150, 5));
         totalBooks.add(new Books(3, "Les Miserable", 100, 2));
-        totalBooks.add(new Books(4, " The Odyssey ", 250, 4));
-        totalBooks.add(new Books(5, "   Dracula   ", 175, 1));
-    }
-    // Function Insert data of books
-    public static void insertBooks(ArrayList<Books> totalBooks) {
-        Scanner sc = new Scanner(System.in);
-        int bid=1,price,qty;
-        String name;
-        bid++;    
-        System.out.print("Enter Book Name: ");        
-        name = sc.nextLine();
-       while(name.length() < 1){              
-                System.out.println("| Error: Please Enter the Book Name    |");              
-
-
-                System.out.println("-_-_-_-_-_-_-_-_-_-_-_-_-");
-                System.out.print("| Enter Book Name: ");
-                name = sc.nextLine();              
-       }
-       System.out.print("Enter Book Price: ");
-       price=sc.nextInt();
-       while(price<1){
-                System.out.println("| Error: Please Enter the Book Price more than 1    |");              
-                System.out.println("-_-_-_-_-_-_-_-_-_-_-_-_-");
-                System.out.print("| Enter Book Price: ");
-                price = sc.nextInt();  
-       }
-        System.out.print("Enter Quantity of Book : ");
-       qty=sc.nextInt();
-       while(qty<1){
-                System.out.println("| Error: Please Enter Quantity of Book more than 1 |");              
-                System.out.println("-_-_-_-_-_-_-_-_-_-_-_-_-");
-                System.out.print("Enter Quantity of Book : ");
-                qty = sc.nextInt();  
-       }
-        totalBooks.add(new Books(bid, name, price, qty));
-        System.out.println("record book inserted : ");
-
+        totalBooks.add(new Books(4, "The Odyssey", 250, 4));
+        totalBooks.add(new Books(5, "Dracula", 175, 1));
     }
 
     // find the required book and return the book object
@@ -103,7 +82,22 @@ public class Books {
         String avail;
         if (copies == 0) avail = "Out of Stock";
         else avail = "In Stock";
-        System.out.println(bid + "         " + bname + "            " + bpoints + "              " + copies + "          " + avail);
+        //System.out.println(bid + "         " + bname + "            " + bpoints + "              " + copies + "          " + avail);
+         System.out.printf("%-10d %-30s %-10d %-10d %-20s%n",bid,bname,bpoints,copies,avail);
+    }
+
+    public void displayIssuedBook() {
+        String returns;
+        if (status == false) returns = "Not Returned";
+        else returns = "Returned";
+        System.out.println(bid + "         " + bname + "            " + bpoints + "              " + copies + "          " + issue_date + "         " + return_date + "         " + returns);
+    }
+
+    public void displayIssuedBook() {
+        String returns;
+        if (status == false) returns = "Not Returned";
+        else returns = "Returned";
+        System.out.println(bid + "         " + bname + "            " + bpoints + "              " + copies + "          " + issue_date + "         " + return_date + "         " + returns);
     }
 
     // Display all books present in the bookstore(i.e ArrayList)
