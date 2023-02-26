@@ -12,7 +12,7 @@ public class Admin {
 
     public void DisplayRegUsers(ArrayList<User> UsersList) {
         System.out.println("------------------------------------- User Profile --------------------------------");
-        System.out.println("Full Name  User Name   Password  Balance Points ");
+        System.out.println("Full Name         User Name        Password         Balance Points ");
         System.out.println("-----------------------------------------------------------------------------------");
         for (User u : UsersList) {
             u.ShowProfile();

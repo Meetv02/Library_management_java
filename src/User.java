@@ -49,10 +49,13 @@ public class User {
         System.out.println("");
         System.out.println("---------------------------------- User Profile -------------------------------------");
         System.out.println("Full Name : " + getFullName());
+        System.out.println("-----------------------------------------------------");
         System.out.println("User Name : " + getUsername());
-        System.out.println("Password : " + getPassword());
+        System.out.println("-----------------------------------------------------");
+        System.out.println("Password : "  );
+        System.out.println("-----------------------------------------------------");
         System.out.println("Total Fine:" + getFine());
-        System.out.println();
+        System.out.println("-----------------------------------------------------");
         System.out.println("Books Bought : ");
         ListIterator<Books> iterate = issuedBooks.listIterator();
         while (iterate.hasNext()) {
@@ -60,6 +63,7 @@ public class User {
            // System.out.println((iterate.next()).issue_date + "  ");
         }
 
+        System.out.println("___________________________________________________________________________________");
         System.out.println("-----------------------------------------------------------------------------------");
         System.out.println("1-->Back");
         System.out.println("2-->Logout");
@@ -93,6 +97,7 @@ public class User {
            // buybook.issue_date=issue_date;
            buybook.issue_date = LocalDate.now();
             this.issuedBooks.add(buybook);
+            System.out.println("-----------------------------------------------------------------------------------");
             System.out.println("Transaction successful!");
             System.out.println("-----------------------------------------------------------------------------------");
             System.out.println(buybook.bname +" book has been added to your purchased books list.");
@@ -110,13 +115,14 @@ public class User {
                 iterate.next().copies++;
                 buybook.return_date=LocalDate.now();               
                  long daysBetween = ChronoUnit.DAYS.between(buybook.issue_date,LocalDate.now().plusDays(25));
-                 System.out.println("daysBetween"+daysBetween);
+                
                  if(daysBetween>15){
                     long fine_rs=(daysBetween-15)*5;                   
-                    System.out.println(fine_rs+"buybook");
+
                     setFine(fine_rs);
                  }
                 this.issuedBooks.remove(buybook);
+                System.out.println("-----------------------------------------------------------------------------------");
                 System.out.println("Transaction successful!");
                 System.out.println("-----------------------------------------------------------------------------------");
                 System.out.println(buybook.bname +" book has been returned");
@@ -134,6 +140,7 @@ public class User {
             System.out.println(book.bid + "    " + book.bname + "     " + book.issue_date + " " + book.return_date);
         }
 
+        System.out.println("-----------------------------------------------------------------------------------");
         System.out.println("Enter Book ID you want to return : ");
         Scanner sc = new Scanner(System.in);
         int id=sc.nextInt();
@@ -183,11 +190,13 @@ public class User {
                             currUser = null;
                             new ProcessBuilder("cmd", "/c", "cls");
                             System.out.println("Successfully Logged Out!!");
+                            System.out.println("-----------------------------------------------------------------------------------");
                         }
 
                         break;
                     // Purchase books
                     case 2:
+                    System.out.println("-----------------------------------------------------------------------------------");
                         System.out.println(
                                 "Enter the book id which you want to purchase"
                         );
@@ -196,6 +205,7 @@ public class User {
                         // Find the book and purchase the book
                         Books foundbook = Books.findBook(bookId, totalBooks);                      
                         if (foundbook == null) {
+                            System.out.println("-----------------------------------------------------------------------------------");
                             System.out.println("please enter valid book id...");
                         } else {
                             currUser.issueBook(foundbook);
@@ -213,6 +223,7 @@ public class User {
                         currUser = null;
                         new ProcessBuilder("cmd", "/c", "cls");
                         System.out.println("Successfully Logged Out!!");
+                        System.out.println("-----------------------------------------------------------------------------------");
                         break;
                     default:
                         break;

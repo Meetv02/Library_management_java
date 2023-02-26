@@ -61,25 +61,21 @@ public class Register {
         String regufullname = sc.nextLine();
         //Full Name length Validation
         while (regufullname.length() < 1) {
-                System.out.println("*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*");
+                System.out.println("-----------------------------------");
                 System.out.println("| Error: Please Enter the Name    |");
-                System.out.println("*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*");
-
-                System.out.println("*-*-*-*-*-*-*-*-*-*-*-*-*");
-                System.out.print("| Enter Full name: ");
+                System.out.println("-----------------------------------");
+                System.out.print("Enter Full name: ");
                 regufullname = sc.nextLine();
-                System.out.println("-------------------------");
             }
         System.out.println("Enter Username : ");
         String reguuname = sc.nextLine();
         //Username length Validation
             while (reguuname.length() < 6) {
-                System.out.println("*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*");
+                System.out.println("-----------------------------------------------------------------------");
                 System.out.println("| Error: Name must be at least 6 characters long and only alphabet.   |");
-                System.out.println("*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*");
+                System.out.println("-----------------------------------------------------------------------");
                 System.out.print("Enter Username : ");
                 reguuname = sc.nextLine();
-                System.out.println("-------------------------");
             }
             
         if (isUsernameTaken(registeredUsers, regufullname)) {
@@ -95,16 +91,17 @@ public class Register {
             System.out.println();
             //Password Validation
             while (!isValidPassword( new String(regupwd))){
-                System.out.println("*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-**-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*");
-                System.out.println("| Error: Password must contain 6 characters long, one lowercase letter, one uppercase letter, and one digit.   |");
-                System.out.println("*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-**-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*");
+                System.out.println("-------------------------------------------------------------------------------------------------------");
+                System.out.println("Password must contain 6 characters long, one lowercase letter, one uppercase letter, and one digit.    ");
+                System.out.println("-------------------------------------------------------------------------------------------------------");
                 regupwd = cnl.readPassword("Enter your password:");
-                System.out.println("-------------------------");
+                System.out.println("-----------------------------------------------------------------------------------");
             }
 
             User newuser = new User(regufullname, reguuname, new String(regupwd));
             registeredUsers.add(newuser);
             System.out.println("User Successfully registered.........");
+            System.out.println("-----------------------------------------------------------------------------------");
         }
 
     }

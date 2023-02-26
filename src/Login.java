@@ -59,7 +59,9 @@ public class Login {
         while (iterate.hasNext()) {
             User u = iterate.next();
             if (u.uname.equals(curruname) && u.password.equals(currupwd)) {
+                System.out.println("-----------------------------------------------------------------------------------");
                 System.out.println("Successfully Logged in.........");
+                System.out.println("-----------------------------------------------------------------------------------");
                 System.out.println();
                 return u;
             }

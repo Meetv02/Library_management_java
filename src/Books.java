@@ -33,7 +33,7 @@ public class Books {
     public Books(int bid, String bname, int bpoints, int copies) {
         LocalDate issue_date = LocalDate.now();
         // LocalDate return_date= new Date(issue_date.getTime() + 15 * 24 * 60 * 60 * 1000); 
-        System.out.println("Current Date: "+issue_date);
+        //System.out.println("Current Date: "+issue_date);
         //System.out.println("Return Date: "+return_date);
         this.bid = bid;
         this.bname = bname;
@@ -63,7 +63,7 @@ public class Books {
                 System.out.println("| Error: Please Enter the Book Name    |");              
 
 
-                System.out.println("*-*-*-*-*-*-*-*-*-*-*-*-*");
+                System.out.println("-_-_-_-_-_-_-_-_-_-_-_-_-");
                 System.out.print("| Enter Book Name: ");
                 name = sc.nextLine();              
        }
@@ -71,7 +71,7 @@ public class Books {
        price=sc.nextInt();
        while(price<1){
                 System.out.println("| Error: Please Enter the Book Price more than 1    |");              
-                System.out.println("*-*-*-*-*-*-*-*-*-*-*-*-*");
+                System.out.println("-_-_-_-_-_-_-_-_-_-_-_-_-");
                 System.out.print("| Enter Book Price: ");
                 price = sc.nextInt();  
        }
@@ -79,7 +79,7 @@ public class Books {
        qty=sc.nextInt();
        while(qty<1){
                 System.out.println("| Error: Please Enter Quantity of Book more than 1 |");              
-                System.out.println("*-*-*-*-*-*-*-*-*-*-*-*-*");
+                System.out.println("-_-_-_-_-_-_-_-_-_-_-_-_-");
                 System.out.print("Enter Quantity of Book : ");
                 qty = sc.nextInt();  
        }
