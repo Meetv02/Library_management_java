@@ -28,7 +28,7 @@ public class Main {
         while (true) {
             try {
                 System.out.println("------------------------------------- Main Menu -----------------------------------");
-                System.out.println("1-->User ogin");
+                System.out.println("1-->User Login");
                 System.out.println("2-->Admin Login");
                 System.out.println("3-->Register");
                 System.out.println("4-->Exit");

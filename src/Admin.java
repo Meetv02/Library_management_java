@@ -11,7 +11,7 @@ import java.time.temporal.ChronoUnit;
 public class Admin implements manageBook {
     String aname;
     String apassword;
-
+    static int bid=5;
     Admin(){
     }
 
@@ -47,7 +47,8 @@ public class Admin implements manageBook {
     @Override
     public void insertBook(ArrayList<Books> totalBooks) {
         Scanner sc = new Scanner(System.in);
-        int bid=1,price,qty;
+
+        int price,qty;
         String name;
         bid++;
         System.out.print("Enter Book Name: ");
