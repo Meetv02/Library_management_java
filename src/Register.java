@@ -64,7 +64,7 @@ public class Register {
                 System.out.println("-----------------------------------");
                 System.out.println("| Error: Please Enter the Name    |");
                 System.out.println("-----------------------------------");
-                System.out.print("Enter Full name: ");
+                System.out.println("Enter Full name: ");
                 regufullname = sc.nextLine();
             }
         System.out.println("Enter Username : ");
@@ -74,7 +74,7 @@ public class Register {
                 System.out.println("-----------------------------------------------------------------------");
                 System.out.println("| Error: Name must be at least 6 characters long and only alphabet.   |");
                 System.out.println("-----------------------------------------------------------------------");
-                System.out.print("Enter Username : ");
+                System.out.println("Enter Username : ");
                 reguuname = sc.nextLine();
             }
             
