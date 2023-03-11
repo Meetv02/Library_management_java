@@ -36,8 +36,8 @@ public class Login {
             User u = iterate.next();
             if (u.getUsername().equals(findUser)) {
                 System.out.println("Enter new password : ");
-                Scanner scan = new Scanner(System.in);
-                String pwd = br.readLine();
+                Console console = System.console();
+                String pwd = new String(console.readPassword());
                 u.setPassword(pwd);
                 return true;
             }

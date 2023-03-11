@@ -9,8 +9,7 @@ public class Main {
     public static void main(String[] args) {
         Console console;
         Scanner scan = new Scanner(System.in);
-        InputStreamReader r = new InputStreamReader(System.in);
-        BufferedReader br = new BufferedReader(r);
+        
         System.out.println();
 
         // Store Books data
@@ -61,7 +60,7 @@ public class Main {
 
                             // Forgot password
                             System.out.println("Enter the username : ");
-                            String findUser = br.readLine();
+                            String findUser = scan.next();
                             boolean status = Login.forgotPassword(findUser, registeredUsers);
 
                             if (status == true) System.out.println(

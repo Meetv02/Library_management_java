@@ -140,13 +140,13 @@ public class Student {
                         int profilechoice = currUser.ShowUserProfile();
 
                         // Clear the screen and back to home page
-                        if (profilechoice == 1) {
-                            new ProcessBuilder("cmd", "/c", "cls");
-                        }
+                        // if (profilechoice == 1) {
+                        //     new ProcessBuilder("cmd", "/c", "cls");
+                        // }
                         // Logout
                         if (profilechoice == 2) {
                             currUser = null;
-                            new ProcessBuilder("cmd", "/c", "cls");
+                            // new ProcessBuilder("cmd", "/c", "cls");
                             System.out.println("Successfully Logged Out!!");
                         }
 
